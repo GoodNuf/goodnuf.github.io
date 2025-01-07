@@ -47,9 +47,9 @@ function ShowHiddenText()
 function Catalog(x)
 {
     if (x === false)
-        window.location.href='/Catalog/?switch=true';
+        window.location.href='/catalog/?switch=true';
     else
-        window.location.href='/Catalog/';
+        window.location.href='/catalog/';
 }
 function validateForm()
 {
