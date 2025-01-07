@@ -46,10 +46,10 @@ function ShowHiddenText()
 }
 function Catalog(x)
 {
-    if (x===false)
-        window.location.href='/Catalog?switch=true';
+    if (x === false)
+        window.location.href='/Catalog/?switch=true';
     else
-        window.location.href='/Catalog';
+        window.location.href='/Catalog/';
 }
 function validateForm()
 {
