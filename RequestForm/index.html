@@ -74,13 +74,14 @@
             </div><br style="display: block;">
             <div class="flex-container" style="display:none;" id="qContainer">
                 <div class="radioBubble" id="lowBubble" onclick="rSwitch('lowQ','highQ','lowBubble','highBubble');" style="margin-left: auto;">
-                    <input type="radio" id="lowQ" name="quality" value="low" required>
+                    <input type="radio" id="lowQ" name="quality" value="1080p Full HD ($1)" required>
                     <label>1080p Full HD &lpar;$1&rpar;</label>
                 </div><h4>or</h4>
                 <div class="radioBubble" id="highBubble" onclick="rSwitch('highQ','lowQ','highBubble','lowBubble');" style="margin-right: auto;">
-                    <input type="radio" id="highQ" name="quality" value="high" required>
+                    <input type="radio" id="highQ" name="quality" value="2160p 4K ($2)" required>
                     <label>2160p 4K &lpar;$2&rpar;</label>
                 </div>
+                
                 <br style="display: block;margin: 8px 0;">
             </div>
             <div class="flex-container" id="sContainer" style="display:none;">
@@ -98,6 +99,7 @@
             </div>
             <input type="text" name="title" required placeholder="Media Title"><br>
             <input type="number" name="year" required placeholder="Release Year (YYYY)">
+            <input type="radio" id="txt" name="txt" style="display:none;">
         </div><br>
         <input type="submit" value="Submit"><br>
         </div>
