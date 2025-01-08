@@ -58,10 +58,36 @@ label:hover {cursor:pointer;}
 .map:hover span{color: #ffffff;}
 .map:active span{color: #69CCC9;}
 
-table.gridtable {margin: 0 auto;border-collapse: collapse;width: 80%;}
-table.gridtable th, table.gridtable td {border-width: 0.1pt;padding: 8px;border-style: solid;border-color: #666666;background-color: black;color: white;}
-table.gridtable th {background-color: black;color: white;}
-table.gridtable td {background-color: black;color: white;}
+/* table.gridtable {margin: 0 auto;border-collapse: collapse;width: 80%;border-collapse:separate;
+    border:solid #292929 15px;
+    border-radius:15px;}
+table.gridtable th, table.gridtable td {border-width:0.1pt;padding:8px;border-style:solid;background-color:black;color:white; border-left:solid black 1px;
+    border-top:solid black 1px;}
+table.gridtable th {background-color:black;color:white;background-color:#292929;border-top: none;}
+table.gridtable td {background-color:black;color:white;background-color: #292929;}
+td:first-child, th:first-child {
+    border-left: none;
+} */
+
+table {
+    margin: 0 auto;
+    border-collapse:separate;
+    border:solid #292929 10px;
+    border-radius:15px;
+}
+
+td, th {
+    border-left:solid #292929 8px;
+    border-top:solid #292929 8px;
+}
+
+th {
+    border-top: none;
+}
+
+td:first-child, th:first-child {
+     border-left: none;
+}
 
 .content-containerS {
     display: flex;
@@ -70,4 +96,23 @@ table.gridtable td {background-color: black;color: white;}
     width: 100%;
     height: 80vh;
     flex-direction: column;
+}
+
+@media (max-width: 600px) {
+    .title-container {
+        padding: 5px 0;
+    }
+
+    .content-containerS {
+        padding: 10px;
+        width: 100%;
+    }
+
+    h1.title {
+        font-size: 1.5em;
+    }
+
+    h4 {
+        font-size: 1em;
+    }
 }
