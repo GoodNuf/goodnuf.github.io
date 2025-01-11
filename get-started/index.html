@@ -21,16 +21,17 @@
                     alert('Passwords do not match.')
                     return;
                 }
-                if(document.forms["signupForm"]["plan"].value==="Trial")
-                    document.forms["signupForm"]["cost"].value="";
-                else if(document.forms["signupForm"]["plan"].value==="Monthly")
-                    document.forms["signupForm"]["cost"].value="Please send $6 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
-                else if(document.forms["signupForm"]["plan"].value==="Annual")
-                    document.forms["signupForm"]["cost"].value="Please send $55 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
+                // if(document.forms["signupForm"]["plan"].value==="Trial")
+                //     document.forms["signupForm"]["cost"].value="";
+                // else if(document.forms["signupForm"]["plan"].value==="Monthly")
+                //     document.forms["signupForm"]["cost"].value="Please send $6 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
+                // else if(document.forms["signupForm"]["plan"].value==="Annual")
+                //     document.forms["signupForm"]["cost"].value="Please send $55 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
                 emailjs.sendForm('service_37nvk1e','intro',this)
                 .then(()=>
                 {
                     console.log('SUCCESS!');
+                    newUser();
                     window.location.href='/get-started/success';
                 },(error)=>
                 {
@@ -44,7 +45,6 @@
     <div class="title-container">
         <h1 class="title" onclick="window.location.href='/index.html'">FartFlix<span>+</span><i style="font-size: small;">An Upcyclr Project</i></h1>
     </div>
-   
     <form id="signupForm" name="signupForm" method="post" class="centered">
         <div class="formBubble" style="background-color: #292929;">
         <h4 style="margin-top: 0;">Sign Up Form</h4><br>
@@ -73,12 +73,12 @@
         </div><br style="display: block;margin: 8px 0;">
         <input type="radio" id="cost" name="cost" value="" style="display:none;">
         <input type="text" name="fname" required placeholder="First Name"><br>
-        <input type="text" name="lname" required placeholder="Last Name"><br>
+        <!-- <input type="text" name="lname" required placeholder="Last Name"><br> -->
         <input type="email" name="email" required placeholder="Email Address"><br>
-        <input type="text" name="uname" required placeholder="Username"><br>
+        <!-- <input type="text" name="uname" required placeholder="Username"><br> -->
         <div class="flex-container">
             <div style="width:78%;">
-                <input id="pw" type="password" name="password" required placeholder="Password">
+                <input id="pw" type="password" name="password" required placeholder="Create Password">
                 <br>
                 <input id="pw2" type="password" name="password" required placeholder="Confirm Password">
             </div>
