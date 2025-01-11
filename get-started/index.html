@@ -16,22 +16,22 @@
             document.getElementById('signupForm').addEventListener('submit',function(event)
             {
                 event.preventDefault();
-                if(document.forms["signupForm"]["password"].value!==document.forms["signupForm"]["cpassword"].value)
+                if(document.forms["signupForm"]["pw"].value!==document.forms["signupForm"]["pw2"].value)
                 {
                     alert('Passwords do not match.')
                     return;
                 }
-                // if(document.forms["signupForm"]["plan"].value==="Trial")
-                //     document.forms["signupForm"]["cost"].value="";
-                // else if(document.forms["signupForm"]["plan"].value==="Monthly")
-                //     document.forms["signupForm"]["cost"].value="Please send $6 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
-                // else if(document.forms["signupForm"]["plan"].value==="Annual")
-                //     document.forms["signupForm"]["cost"].value="Please send $55 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
+                if(document.forms["signupForm"]["plan"].value==="Trial")
+                    document.forms["signupForm"]["cost"].value="";
+                else if(document.forms["signupForm"]["plan"].value==="Monthly")
+                    document.forms["signupForm"]["cost"].value="Please send $6 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
+                else if(document.forms["signupForm"]["plan"].value==="Annual")
+                    document.forms["signupForm"]["cost"].value="Please send $55 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
+                newUser();
                 emailjs.sendForm('service_37nvk1e','intro',this)
                 .then(()=>
                 {
                     console.log('SUCCESS!');
-                    newUser();
                     window.location.href='/get-started/success';
                 },(error)=>
                 {
@@ -49,33 +49,25 @@
         <div class="formBubble" style="background-color: #292929;">
         <h4 style="margin-top: 0;">Sign Up Form</h4><br>
         <div class="formBubble">
-        <!-- <input type="radio" id="trial" name="plan" value="Trial" required>
-        <label for="trial">30 Day Free Trial</label>
-        <span style="display:inline-block; width: 80px;"></span>
-        <input type="radio" id="monthly" name="plan" value="Monthly" required>
-        <label for="monthly">Monthly ($6/month)</label>
-        <span style="display:inline-block; width: 80px;"></span>
-        <input type="radio" id="annual" name="plan" value="Annual" required>
-        <label for="annual">Annual ($55/year)</label><br><br> -->
         <div class="flex-container">
             <div class="radioBubble" id="tBubble" onclick="pSwitch('trial','monthly','annual','tBubble','mBubble','aBubble');" style="margin-left: 0;">
-                <input type="checkbox" id="trial" name="plan" value="Trial" required>
+                <input type="checkbox" id="trial" name="plan" value="Trial">
                 <label for="trial">30 Day Free Trial</label>
             </div>
             <div class="radioBubble" id="mBubble" onclick="pSwitch('monthly','trial','annual','mBubble','tBubble','aBubble');">
-                <input type="checkbox" id="monthly" name="plan" value="Monthly" required>
+                <input type="checkbox" id="monthly" name="plan" value="Monthly">
                 <label for="monthly">Monthly ($6/month)</label>
             </div>
             <div class="radioBubble" id="aBubble" onclick="pSwitch('annual','trial','monthly','aBubble','tBubble','mBubble',);" style="margin-right: 0;" >
-                <input type="checkbox" id="annual" name="plan" value="Annual" required>
+                <input type="checkbox" id="annual" name="plan" value="Annual">
                 <label for="annual">Annual ($55/year)</label>
             </div>
         </div><br style="display: block;margin: 8px 0;">
         <input type="radio" id="cost" name="cost" value="" style="display:none;">
         <input type="text" name="fname" required placeholder="First Name"><br>
-        <!-- <input type="text" name="lname" required placeholder="Last Name"><br> -->
         <input type="email" name="email" required placeholder="Email Address"><br>
-        <!-- <input type="text" name="uname" required placeholder="Username"><br> -->
+        <input type="cost" name="cost" style="display:none;">
+        <input type="txt2" name="txt2" style="display:none;">
         <div class="flex-container">
             <div style="width:78%;">
                 <input id="pw" type="password" name="password" required placeholder="Create Password">
@@ -87,11 +79,6 @@
                 <label id="pwTxt" style="margin-top: 30px;">Show Password</label>
             </div>
         </div>
-        <!-- <div class="flex-container">
-            <div style="width:78%;">
-                <input id="pw2" type="password" name="password" required placeholder="Confirm Password">
-            </div>
-        </div> -->
         <br>
         <input type="submit" value="Sign Up"><br><br>
         <a onclick="window.location.href='/login'" class="terms-link">Already a member? Make a request</a>
