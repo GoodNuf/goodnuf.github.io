@@ -5,7 +5,7 @@
     <title>Request Form</title>
     <link rel="stylesheet" href="https://unpkg.com/marx-css/css/marx.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="/images/faviconW.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script src="/js/main.js"></script>
     <link rel="stylesheet" href="/css/site.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -21,6 +21,12 @@
                 {
                     alert("Please enter a valid year.");
                     return false;
+                }
+                if(typeof document.forms["signupForm"]["type"].value=="Movie")
+                    document.forms["signupForm"]["txt"].value="Quality: {{quality}}";
+                else
+                {
+                    document.forms["signupForm"]["txt"].value="Method: {{method}}<br>Seasons: {{seasons}}";
                 }
                 emailjs.sendForm('service_37nvk1e','request',this)
                 .then(()=>
@@ -42,24 +48,6 @@
     <form id="signupForm" name="signupForm" method="post" class="centered">
         <div class="formBubble" style="background-color: #292929;">
         <h4 style="margin-top: 0;">Request Form</h4><br>
-        <div class="formBubble">
-            <h4 style="margin-top: 0;">Account Info</h4><br>
-            <input type="text" name="fname" required placeholder="First Name"><br>
-            <input type="email" name="email" required placeholder="Email Address"><br>
-            <input type="text" name="uname" required placeholder="Username"><br>
-            <div class="flex-container">
-                <div style="width:78%;">
-                    <input id="pw" type="password" name="password" required placeholder="Password">
-                </div>
-                <div class="checkBubble" id="pwb" onclick=showPW(); style="height: 52px;">
-                    <input type="checkbox" id="pwCheck" name="pwCheck" value="Show Password">
-                    <label id="pwTxt">Show Password</label>
-                </div>
-                <!-- <div class="checkBubble" style="height:52px;margin:0;" id="pwb" onclick=showPW();>
-                    <label id="pwTxt">Show Password</label>
-                </div> -->
-            </div>
-        </div><br>
         <div class="formBubble">
             <h4 style="margin-top: 0;">Media Info</h4><br>
             <div class="flex-container">

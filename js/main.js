@@ -274,3 +274,35 @@ function sRequire(x)
     byE.required=x;
     byS.required=x;
 }
+async function loginUser() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('pw').value;
+
+    const response = await fetch('https:/fartflix.duckdns.org:8920/Users/AuthenticateByName', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Emby-Authorization': 'MediaBrowser Client="fartflix.com", Device="form", DeviceId="1", Version="1.0.0"'
+        },
+        body: JSON.stringify({
+            Username: username,
+            Pw: password
+        })
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        // Handle successful login, e.g., store token, redirect user, etc.
+        // console.log('Login successful:', data);
+        // console.log('Name:', data.User.Name);
+        // Example: Store the access token in localStorage
+        // localStorage.setItem('jellyfinToken', data.AccessToken);
+        // Redirect to another page or update the UI
+        alert('Successfully logged in as ' + data.User.Name);
+        window.location.href = '/login/make-a-request'; // Change to your desired page
+    } else {
+        // Handle login failure
+        console.error('Login failed:', response.statusText);
+        alert('Login failed. Please check your username and password.');
+    }
+}
