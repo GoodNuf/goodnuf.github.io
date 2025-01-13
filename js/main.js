@@ -268,11 +268,11 @@ async function loginUser() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('pw').value;
 
-    const response = await fetch('https://fartflix.duckdns.org:8920/Users/AuthenticateByName', {
+    const response = await fetch('https://watch.fartflix.com/Users/AuthenticateByName', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-Emby-Authorization': 'MediaBrowser Client="fartflix.com", Device="login", DeviceId="1", Version="1.0.0"'
+            'Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912" Client="fartflix.com", Device="loginUser", DeviceId="1", Version="1.0.0"'
         },
         body: JSON.stringify({
             Username: username,
@@ -300,11 +300,11 @@ async function newUser() {
     const username = document.getElementById('email').value;
     const password = document.getElementById('pw').value;
 
-    const response = await fetch('https://fartflix.duckdns.org:8920/Users/New', {
+    const response = await fetch('https://watch.fartflix.com/Users/New', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-Emby-Authorization': 'MediaBrowser Client="fartflix.com", Device="newUser", DeviceId="1", Version="1.0.0"'
+            'Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912" Client="fartflix.com", Device="newUser", DeviceId="2", Version="1.0.0"'
         },
         body: JSON.stringify({
             Username: username,
