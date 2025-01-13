@@ -125,24 +125,14 @@ function pSwitch(xx,yy,zz,xxc,yyc,zzc)
     var xc=document.getElementById(xxc);
     var yc=document.getElementById(yyc);
     var zc=document.getElementById(zzc);
-    if(x.checked)
-    {
-        x.checked=false;
-        y.checked=false;
-        z.checked=false;
-        xc.classList.replace("radioBubbleS","radioBubble");
-        yc.classList.replace("radioBubbleS","radioBubble");
-        zc.classList.replace("radioBubbleS","radioBubble");
-    }
-    else
-    {
-        x.checked=true;
-        y.checked=false;
-        z.checked=false;
-        xc.classList.replace("radioBubble","radioBubbleS");
-        yc.classList.replace("radioBubbleS","radioBubble");
-        zc.classList.replace("radioBubbleS","radioBubble");
-    }
+    x.checked = false;
+    y.checked = false;
+    z.checked = false;
+    xc.classList.replace("radioBubbleS", "radioBubble");
+    yc.classList.replace("radioBubbleS", "radioBubble");
+    zc.classList.replace("radioBubbleS", "radioBubble");
+    x.checked = true;
+    xc.classList.replace("radioBubble", "radioBubbleS");
 }
 function sSwitch(xx,yy,xxc,yyc)
 {

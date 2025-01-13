@@ -21,12 +21,19 @@
                     alert('Passwords do not match.')
                     return;
                 }
-                if(document.forms["signupForm"]["plan"].value==="Trial")
-                    document.forms["signupForm"]["cost"].value="";
-                else if(document.forms["signupForm"]["plan"].value==="Monthly")
-                    document.forms["signupForm"]["cost"].value="Please send $6 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
-                else if(document.forms["signupForm"]["plan"].value==="Annual")
-                    document.forms["signupForm"]["cost"].value="Please send $55 via Interac e-Transfer to upcyclr@outlook.com to activate your account.";
+                const plan=document.forms["signupForm"]["plan"].value;
+                cost=document.forms["signupForm"]["cost"].value;
+                if(plan==="Trial")
+                    cost="";
+                else if(plan==="Monthly")
+                    cost="Please send $6 via Interac e-Transfer to transactions@fartflix.com to activate your account.";
+                else if(plan==="Annual")
+                    cost="Please send $55 via Interac e-Transfer to transactions@fartflix.com to activate your account.";
+                else
+                {
+                    alert('Please select a plan.');
+                    return;
+                }
                 newUser();
                 emailjs.sendForm('service_37nvk1e','intro',this)
                 .then(()=>
@@ -51,22 +58,22 @@
         <div class="formBubble">
         <div class="flex-container">
             <div class="radioBubble" id="tBubble" onclick="pSwitch('trial','monthly','annual','tBubble','mBubble','aBubble');" style="margin-left: 0;">
-                <input type="checkbox" id="trial" name="plan" value="Trial">
+                <input type="radio" id="trial" name="plan" value="Trial" required>
                 <label for="trial">30 Day Free Trial</label>
             </div>
             <div class="radioBubble" id="mBubble" onclick="pSwitch('monthly','trial','annual','mBubble','tBubble','aBubble');">
-                <input type="checkbox" id="monthly" name="plan" value="Monthly">
+                <input type="radio" id="monthly" name="plan" value="Monthly" required>
                 <label for="monthly">Monthly ($6/month)</label>
             </div>
             <div class="radioBubble" id="aBubble" onclick="pSwitch('annual','trial','monthly','aBubble','tBubble','mBubble',);" style="margin-right: 0;" >
-                <input type="checkbox" id="annual" name="plan" value="Annual">
+                <input type="radio" id="annual" name="plan" value="Annual" required>
                 <label for="annual">Annual ($55/year)</label>
             </div>
         </div><br style="display: block;margin: 8px 0;">
         <input type="radio" id="cost" name="cost" value="" style="display:none;">
         <input type="text" name="fname" required placeholder="First Name"><br>
         <input type="email" name="email" required placeholder="Email Address"><br>
-        <input type="cost" name="cost" style="display:none;">
+        <input type="cost" name="cost" id="cost" style="display:none;" value="">
         <input type="txt2" name="txt2" style="display:none;">
         <div class="flex-container">
             <div style="width:78%;">
