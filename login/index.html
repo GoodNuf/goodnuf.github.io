@@ -8,6 +8,21 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script src="/js/main.js"></script>
     <link rel="stylesheet" href="/css/site.css">
+    <script>
+        window.onload=function()
+        {
+            const urlParams=new URLSearchParams(window.location.search);
+            if (urlParams.get('switch')==='true')
+            {
+                document.getElementById('Hswitch').innerText='Manage Account';
+                document.title='Manage Account';
+                document.getElementById('login').onclick=function()
+                {
+                    window.location.href='/manage-account';
+                };
+            }
+        };
+    </script>
 </head>
 <body style="background-color:black;color:white">
     <div class="title-container">
@@ -15,7 +30,7 @@
     </div>
     <form onsubmit="event.preventDefault(); loginUser();"class="centered">
         <div class="formBubble" style="background-color: #292929;">
-        <h4 style="margin-top: 0;">Request Form</h4><br>
+        <h4 id="Hswitch" style="margin-top: 0;">Request Form</h4><br>
         <div class="formBubble">
             <h4 style="margin-top: 0;">Login</h4><br>
             <input type="text" id="username" name="username" required placeholder="Email Address or Username"><br>

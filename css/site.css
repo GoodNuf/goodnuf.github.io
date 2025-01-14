@@ -1,13 +1,12 @@
 .centered{user-select:none;text-align: center;margin-top: auto;display: block;position: absolute;left: 30%;width: 40%;min-width: 300px;}
 .box{transition: background-color 0.2s;border-radius: 30px;background-color: #69ccc9d2;}
-.box2{transition: background-color 0.2s;border-radius: 30px;background-color: #69ccc9d2;margin: 10px;flex: 1;min-width: 45%; cursor: pointer;}
+.box2{transition: background-color 0.2s;border-radius: 30px;background-color: #69ccc9d2;margin: 10px;flex: 1; cursor: pointer;}
 .box2:hover{background-color:#69ccc98f;}
 .box2:active{background-color:#69ccc98f;transform: scale(0.99);}
-body{color: white;user-select: none;height:40px;margin: 0;
-    padding: 0;
-    width: 100%;
-    text-align: center;
-}
+.box2S{transition: background-color 0.2s;border-radius: 30px;background-color: #69ccc98f;margin: 10px;flex: 1; cursor: pointer;}
+.box2S:hover{background-color:#69ccc94d;}
+.box2S:active{background-color:#69ccc94d;transform: scale(0.99);}
+body{color: white;user-select: none;height:40px;margin: 0;padding: 0;width: 100%;text-align: center;}
 .flex-container {display: flex;justify-content: space-between;flex-wrap: wrap;}
 .title{transition:color 0.1s!important;}
 .title:hover{cursor:pointer;color:#69CCC9 }

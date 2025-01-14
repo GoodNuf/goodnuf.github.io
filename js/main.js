@@ -264,6 +264,22 @@ function sRequire(x)
     byE.required=x;
     byS.required=x;
 }
+// async function loginUser() {
+//     const username = document.getElementById('username').value;
+//     const password = document.getElementById('pw').value;
+
+//     const response = await fetch('https:/fartflix.duckdns.org:8920/Users/AuthenticateByName', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'X-Emby-Authorization': 'MediaBrowser Client="fartflix.com", Device="form", DeviceId="1", Version="1.0.0"'
+//         },
+//         body: JSON.stringify({
+//             Username: username,
+//             Pw: password
+//         })
+//     });
+// }
 async function loginUser() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('pw').value;
@@ -272,7 +288,7 @@ async function loginUser() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912" Client="fartflix.com", Device="loginUser", DeviceId="1", Version="1.0.0"'
+            'X-Emby-Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912" Client="fartflix.com", Device="loginUser", DeviceId="1", Version="1.0.0"'
         },
         body: JSON.stringify({
             Username: username,
@@ -291,16 +307,17 @@ async function loginUser() {
         alert('Successfully logged in as ' + data.User.Name);
         window.location.href = '/login/make-a-request'; // Change to your desired page
     } else {
-        // Handle login failure
-        console.error('Login failed:', response.statusText);
-        alert('Login failed. Please check your username and password.');
+        const errorData = await response.json().catch(() => ({})); // Handle non-JSON responses
+        console.error('Login failed:', response.status, response.statusText, errorData);
+        alert('Login failed. ' + (errorData.Message || 'Please check your username and password.'));
+        return;
     }
 }
 async function newUser() {
     const username = document.getElementById('email').value;
     const password = document.getElementById('pw').value;
 
-    const response = await fetch('https://watch.fartflix.com/Users/New', {
+    const response = await fetch('http://watch.fartflix.com/Users/New', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -326,5 +343,22 @@ async function newUser() {
         // Handle login failure
         console.error('Account creation failed:', response.statusText);
         alert('Account creation failed.');
+    }
+}
+function memberSwitch()
+{
+    var x=document.getElementById("member");
+    var b=document.getElementById("memberBox");
+    if(x.style.display==="none")
+    {
+        x.style.display="block";
+        window.scrollTo(0,document.body.scrollHeight*69);
+        b.classList.replace("box2","box2S");
+    }
+    else
+    {
+        x.style.display="none";
+        window.scrollTo(0,0);
+        b.classList.replace("box2S","box2");
     }
 }

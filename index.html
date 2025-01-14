@@ -43,8 +43,22 @@
                     <div class="box2" onclick="window.location.href='/get-started'" style="margin: 0 auto;">
                         <br><p><h2 class="text-section-header">Get Started</h2>Sign up and start your 30 day free trial<sup>2</sup></p><br>
                     </div><br><br>
-                    <div class="box2" onclick="window.location.href='/login'" style="margin: 0 auto;">
-                        <br><p><h2 class="text-section-header">Already a FartFlix+ Member?</h2>Make a request</p><br>
+                    <div id="memberBox" class="box2" onclick="memberSwitch();" style="margin: 0 auto;">
+                        <br><p><h2 class="text-section-header">Already a FartFlix+ Member?</h2>&#9658; Start streaming</p><br>
+                    </div>
+                    <div id="member" style="display: none;">
+                        <br>
+                        <div class="flex-container">
+                            <div class="radioBubble" id="mBubble1" onclick="window.open('https://watch.fartflix.com', '_blank'); event.stopPropagation();" style="cursor: pointer;">
+                                <label for="monthly1">&#9658; Start streaming</label>
+                            </div>
+                            <div class="radioBubble" id="mBubble2" onclick="window.location.href='/login'" style="cursor: pointer;">
+                                <label for="monthly1">Make a request</label>
+                            </div>
+                            <div class="radioBubble" id="mBubble3" onclick="window.location.href='/login/?switch=true'" style="cursor: pointer;">
+                                <label for="monthly1">Manage account</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
