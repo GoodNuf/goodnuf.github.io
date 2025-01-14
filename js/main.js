@@ -102,20 +102,26 @@ function rSwitch(xx,yy,xxc,yyc)
     var y=document.getElementById(yy);
     var xc=document.getElementById(xxc);
     var yc=document.getElementById(yyc);
-    if(x.checked)
-    {
-        x.checked=false;
-        y.checked=false;
-        xc.classList.replace("radioBubbleS","radioBubble");
-        yc.classList.replace("radioBubbleS","radioBubble");
-    }
-    else
-    {
-        x.checked=true;
-        y.checked=false;
-        xc.classList.replace("radioBubble","radioBubbleS");
-        yc.classList.replace("radioBubbleS","radioBubble");
-    }
+    x.checked = false;
+    y.checked = false;
+    xc.classList.replace("radioBubbleS", "radioBubble");
+    yc.classList.replace("radioBubbleS", "radioBubble");
+    x.checked = true;
+    xc.classList.replace("radioBubble", "radioBubbleS");
+    // if(x.checked)
+    // {
+    //     x.checked=false;
+    //     y.checked=false;
+    //     xc.classList.replace("radioBubbleS","radioBubble");
+    //     yc.classList.replace("radioBubbleS","radioBubble");
+    // }
+    // else
+    // {
+    //     x.checked=true;
+    //     y.checked=false;
+    //     xc.classList.replace("radioBubble","radioBubbleS");
+    //     yc.classList.replace("radioBubbleS","radioBubble");
+    // }
 }
 function pSwitch(xx,yy,zz,xxc,yyc,zzc)
 {
@@ -171,14 +177,10 @@ function mSwitch(xx,yy,xxc,yyc)
     var q=document.getElementById("qContainer");
     var s=document.getElementById("sContainer");
     var st=document.getElementById("stContainer");
-    // var lq = document.getElementById("lowQ");
-    // var hq = document.getElementById("highQ");
-    // var stText = document.getElementById("stText");
     s.style.display="none";
     st.style.display="none";
     rSwitch(xx,yy,xxc,yyc);
     if(x.checked)
-    // if(x.style.classList.contains("radioBubble"))
     {
         q.style.display="flex";
         mRequire(true);
@@ -198,7 +200,7 @@ function byS()
     var txt=document.getElementById("stText");
     if(st.style.display==="block"&&txt.placeholder==='Season(s) ($2-$4 each) (e.g. "3", "1-4", "1,3,5")')
     {
-        st.style.display="none";
+        // st.style.display="none";
         rSwitch("bySeason","byEpisode","bySeasonBubble","byEpisodeBubble");
         return;
     }
@@ -212,7 +214,7 @@ function byE()
     var txt=document.getElementById("stText");
     if(st.style.display==="block"&&txt.placeholder==='Episode(s) ($1-$2 each) (e.g. "S01E03", "Season 1 Episode 3", "1x3")')
     {
-        st.style.display="none";
+        // st.style.display="none";
         rSwitch("byEpisode","bySeason","byEpisodeBubble","bySeasonBubble");
         return;
     }
@@ -264,22 +266,6 @@ function sRequire(x)
     byE.required=x;
     byS.required=x;
 }
-// async function loginUser() {
-//     const username = document.getElementById('username').value;
-//     const password = document.getElementById('pw').value;
-
-//     const response = await fetch('https:/fartflix.duckdns.org:8920/Users/AuthenticateByName', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'X-Emby-Authorization': 'MediaBrowser Client="fartflix.com", Device="form", DeviceId="1", Version="1.0.0"'
-//         },
-//         body: JSON.stringify({
-//             Username: username,
-//             Pw: password
-//         })
-//     });
-// }
 async function loginUser() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('pw').value;
@@ -298,16 +284,11 @@ async function loginUser() {
 
     if (response.ok) {
         const data = await response.json();
-        // Handle successful login, e.g., store token, redirect user, etc.
         console.log('Login successful:', data);
-        // console.log('Name:', data.User.Name);
-        // Example: Store the access token in localStorage
-        // localStorage.setItem('jellyfinToken', data.AccessToken);
-        // Redirect to another page or update the UI
-        alert('Successfully logged in as ' + data.User.Name);
-        window.location.href = '/login/make-a-request'; // Change to your desired page
+        alert('Successfully logged in as "'+data.User.Name+'"');
+        window.location.href = '/login/make-a-request';
     } else {
-        const errorData = await response.json().catch(() => ({})); // Handle non-JSON responses
+        const errorData = await response.json().catch(() => ({}));
         console.error('Login failed:', response.status, response.statusText, errorData);
         alert('Login failed. ' + (errorData.Message || 'Please check your username and password.'));
         return;
