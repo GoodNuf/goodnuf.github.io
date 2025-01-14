@@ -288,7 +288,7 @@ async function loginUser() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-Emby-Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912" Client="fartflix.com", Device="loginUser", DeviceId="1", Version="1.0.0"'
+            'Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912", Client="fartflix.com", Device="loginUser", DeviceId="1", Version="1.0.0"'
         },
         body: JSON.stringify({
             Username: username,
@@ -321,7 +321,7 @@ async function newUser() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912" Client="fartflix.com", Device="newUser", DeviceId="2", Version="1.0.0"'
+            'Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912", Client="fartflix.com", Device="newUser", DeviceId="1", Version="1.0.0"'
         },
         body: JSON.stringify({
             Username: username,
