@@ -34,16 +34,20 @@
                     alert('Please select a plan.');
                     return;
                 }
-                newUser();
-                emailjs.sendForm('service_37nvk1e','intro',this)
-                .then(()=>
+                if(newUser())
                 {
-                    console.log('SUCCESS!');
-                    window.location.href='/get-started/success';
-                },(error)=>
-                {
-                    console.log('FAILED...', error);
-                });
+                    emailjs.sendForm('service_37nvk1e','intro',this)
+                    .then(()=>
+                    {
+                        console.log('SUCCESS!');
+                        window.location.href='/get-started/success';
+                    },(error)=>
+                    {
+                        console.log('FAILED...', error);
+                    });
+                }
+                else
+                    alert('Email address already in use.');
             });
         }
     </script>
@@ -72,7 +76,7 @@
         </div><br style="display: block;margin: 8px 0;">
         <input type="radio" id="cost" name="cost" value="" style="display:none;">
         <input type="text" name="fname" required placeholder="First Name"><br>
-        <input type="email" name="email" required placeholder="Email Address"><br>
+        <input type="email" name="email" id="email" required placeholder="Email Address"><br>
         <input type="cost" name="cost" id="cost" style="display:none;" value="">
         <input type="txt2" name="txt2" style="display:none;">
         <div class="flex-container">

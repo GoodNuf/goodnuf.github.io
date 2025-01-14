@@ -298,15 +298,15 @@ async function newUser() {
     const username = document.getElementById('email').value;
     const password = document.getElementById('pw').value;
 
-    const response = await fetch('http://watch.fartflix.com/Users/New', {
+    const response = await fetch('https://watch.fartflix.com/Users/New', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912", Client="fartflix.com", Device="newUser", DeviceId="1", Version="1.0.0"'
         },
         body: JSON.stringify({
-            Username: username,
-            Pw: password
+            Name: username,
+            Password: password
         })
     });
 
@@ -320,10 +320,12 @@ async function newUser() {
         // Redirect to another page or update the UI
         alert('Account creation successful!');
         // window.location.href = '/login/make-a-request'; // Change to your desired page
+        return true;
     } else {
         // Handle login failure
         console.error('Account creation failed:', response.statusText);
         alert('Account creation failed.');
+        return false;
     }
 }
 function memberSwitch()
