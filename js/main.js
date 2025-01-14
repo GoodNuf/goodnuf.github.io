@@ -306,23 +306,31 @@ async function newUser() {
         },
         body: JSON.stringify({
             Name: username,
-            Password: password
+            Password: password,
         })
     });
 
     if (response.ok) {
         const data = await response.json();
-        // Handle successful login, e.g., store token, redirect user, etc.
         console.log('Account creation successful:', data);
-        // console.log('Name:', data.User.Name);
-        // Example: Store the access token in localStorage
-        // localStorage.setItem('jellyfinToken', data.AccessToken);
-        // Redirect to another page or update the UI
         alert('Account creation successful!');
-        // window.location.href = '/login/make-a-request'; // Change to your desired page
+        fetch(`https://watch.fartflix.com/Users/${encodeURIComponent(data.Id)}/Policy`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'MediaBrowser Token="8db286654bf641c0ba4fac4934949912", Client="fartflix.com", Device="newUser", DeviceId="1", Version="1.0.0"'
+            },
+            body: JSON.stringify({
+                EnableMediaPlayback: false,
+                EnableContentDownloading: false,
+                EnableLiveTvAccess: false,
+                EnableLiveTvManagement: false,
+                AuthenticationProviderId: data.Policy.AuthenticationProviderId,
+                PasswordResetProviderId: data.Policy.PasswordResetProviderId
+            })
+        });
         return true;
     } else {
-        // Handle login failure
         console.error('Account creation failed:', response.statusText);
         alert('Account creation failed.');
         return false;
