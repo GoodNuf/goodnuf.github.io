@@ -34,17 +34,9 @@
                     alert('Please select a plan.');
                     return;
                 }
+                console.log("Cost: "+cost);
                 if(newUser())
                 {
-                    emailjs.sendForm('service_37nvk1e','intro',this)
-                    .then(()=>
-                    {
-                        console.log('SUCCESS!');
-                        window.location.href='/get-started/success';
-                    },(error)=>
-                    {
-                        console.log('FAILED...', error);
-                    });
                 }
                 else
                     alert('Email address already in use.');
@@ -77,8 +69,7 @@
         <input type="radio" id="cost" name="cost" value="" style="display:none;">
         <input type="text" name="fname" required placeholder="First Name"><br>
         <input type="email" name="email" id="email" required placeholder="Email Address"><br>
-        <input type="cost" name="cost" id="cost" style="display:none;" value="">
-        <input type="txt2" name="txt2" style="display:none;">
+        <input type="text" name="cost" id="cost" style="display:none;">
         <div class="flex-container">
             <div style="width:78%;">
                 <input id="pw" type="password" name="password" required placeholder="Create Password">
