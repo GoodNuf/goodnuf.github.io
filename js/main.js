@@ -295,8 +295,8 @@ async function loginUser() {
     }
 }
 async function newUser() {
-    const username = document.getElementById('email').value;
-    const password = document.getElementById('pw').value;
+    const username=document.getElementById('email').value;
+    const password=document.getElementById('pw').value;
 
     const response = await fetch('https://watch.fartflix.com/Users/New', {
         method: 'POST',
@@ -309,11 +309,10 @@ async function newUser() {
             Password: password,
         })
     });
-
     if (response.ok) {
         const data = await response.json();
         console.log('Account creation successful:', data);
-        alert('Account creation successful!');
+        // alert('Account creation successful!');
         fetch(`https://watch.fartflix.com/Users/${encodeURIComponent(data.Id)}/Policy`, {
             method: 'POST',
             headers: {

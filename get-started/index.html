@@ -11,45 +11,40 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">(function(){emailjs.init({publicKey:"rQQm5NSHaWQQ46E1J"});})();</script>
     <script type="text/javascript">
-        window.onload=function()
-        {
-            document.getElementById('signupForm').addEventListener('submit',function(event)
-            {
+        window.onload = function() {
+            document.getElementById('signupForm').addEventListener('submit', function(event) {
                 event.preventDefault();
-                if(document.forms["signupForm"]["pw"].value!==document.forms["signupForm"]["pw2"].value)
-                {
-                    alert('Passwords do not match.')
+                if (document.forms["signupForm"]["pw"].value !== document.forms["signupForm"]["pw2"].value) {
+                    alert('Passwords do not match.');
                     return;
                 }
                 const plan=document.forms["signupForm"]["plan"].value;
-                cost=document.forms["signupForm"]["cost"].value;
-                if(plan==="Trial")
-                    cost="";
-                else if(plan==="Monthly")
+                let cost="";
+                if (plan==="Trial") {
+                    cos="";
+                } else if (plan==="Monthly") {
                     cost="Please send $6 via Interac e-Transfer to transactions@fartflix.com to activate your account.";
-                else if(plan==="Annual")
+                } else if (plan==="Annual") {
                     cost="Please send $55 via Interac e-Transfer to transactions@fartflix.com to activate your account.";
-                else
-                {
+                } else {
                     alert('Please select a plan.');
                     return;
                 }
-                console.log("Cost: "+cost);
-                if(newUser())
-                {
+                // console.log("Cost: "+cost);
+                document.getElementById('cost').value=cost;
+
+                if (newUser()) {
                     console.log(cost);
-                    emailjs.sendForm('service_37nvk1e','intro',this)
-                    .then(()=>
-                    {
-                        console.log('SUCCESS!');
-                        window.location.href='/get-started/success';
-                    },(error)=>
-                    {
-                        console.log('FAILED...', error);
-                    });
-                }
-                else
+                    // emailjs.sendForm('service_37nvk1e','intro',this)
+                    //     .then(() => {
+                    //         console.log('SUCCESS!');
+                    //         window.location.href='/get-started/success';
+                    //     }, (error) => {
+                    //         console.log('FAILED...',error);
+                    //     });
+                } else {
                     alert('Email address already in use.');
+                }
             });
         }
     </script>
@@ -60,46 +55,41 @@
     </div>
     <form id="signupForm" name="signupForm" method="post" class="centered">
         <div class="formBubble" style="background-color: #292929;">
-        <h4 style="margin-top: 0;">Sign Up Form</h4><br>
-        <div class="formBubble">
-        <div class="flex-container">
-            <div class="radioBubble" id="tBubble" onclick="pSwitch('trial','monthly','annual','tBubble','mBubble','aBubble');" style="margin-left: 0;">
-                <input type="radio" id="trial" name="plan" value="Trial" required>
-                <label for="trial">30 Day Free Trial</label>
-            </div>
-            <div class="radioBubble" id="mBubble" onclick="pSwitch('monthly','trial','annual','mBubble','tBubble','aBubble');">
-                <input type="radio" id="monthly" name="plan" value="Monthly" required>
-                <label for="monthly">Monthly ($6/month)</label>
-            </div>
-            <div class="radioBubble" id="aBubble" onclick="pSwitch('annual','trial','monthly','aBubble','tBubble','mBubble',);" style="margin-right: 0;" >
-                <input type="radio" id="annual" name="plan" value="Annual" required>
-                <label for="annual">Annual ($55/year)</label>
-            </div>
-        </div><br style="display: block;margin: 8px 0;">
-        <input type="radio" id="cost" name="cost" value="" style="display:none;">
-        <input type="text" name="fname" required placeholder="First Name"><br>
-        <input type="email" name="email" id="email" required placeholder="Email Address"><br>
-        <input type="text" name="cost" id="cost" style="display:none;">
-        <div class="flex-container">
-            <div style="width:78%;">
-                <input id="pw" type="password" name="password" required placeholder="Create Password">
+            <h4 style="margin-top: 0;">Sign Up Form</h4><br>
+            <div class="formBubble">
+                <div class="flex-container">
+                    <div class="radioBubble" id="tBubble" onclick="pSwitch('trial','monthly','annual','tBubble','mBubble','aBubble');" style="margin-left: 0;">
+                        <input type="radio" id="trial" name="plan" value="Trial" required>
+                        <label for="trial">30 Day Free Trial</label>
+                    </div>
+                    <div class="radioBubble" id="mBubble" onclick="pSwitch('monthly','trial','annual','mBubble','tBubble','aBubble');">
+                        <input type="radio" id="monthly" name="plan" value="Monthly" required>
+                        <label for="monthly">Monthly ($6/month)</label>
+                    </div>
+                    <div class="radioBubble" id="aBubble" onclick="pSwitch('annual','trial','monthly','aBubble','tBubble','mBubble');" style="margin-right: 0;">
+                        <input type="radio" id="annual" name="plan" value="Annual" required>
+                        <label for="annual">Annual ($55/year)</label>
+                    </div>
+                </div>
+                <br style="display: block;margin: 8px 0;">
+                <input type="hidden" id="cost" name="cost" value="">
+                <input type="text" name="fname" required placeholder="First Name"><br>
+                <input type="email" name="email" id="email" required placeholder="Email Address"><br>
+                <input type="hidden" name="txt2" value="">
+                <div class="flex-container">
+                    <div style="width:78%;">
+                        <input id="pw" type="password" name="pw" required placeholder="Create Password">
+                        <br>
+                        <input id="pw2" type="password" name="pw2" required placeholder="Confirm Password">
+                    </div>
+                    <div class="checkBubble" id="pwb" onclick=showPW(); style="height: 125px;">
+                        <input type="checkbox" id="pwCheck" name="pwCheck" value="Show Password">
+                        <label id="pwTxt" style="margin-top: 30px;">Show Password</label>
+                    </div>
+                </div>
                 <br>
-                <input id="pw2" type="password" name="password" required placeholder="Confirm Password">
+                <input type="submit" value="Sign Up">
             </div>
-            <div class="checkBubble" id="pwb" onclick=showPW(); style="height: 125px;">
-                <input type="checkbox" id="pwCheck" name="pwCheck" value="Show Password">
-                <label id="pwTxt" style="margin-top: 30px;">Show Password</label>
-            </div>
-        </div>
-        <br>
-        <input type="submit" value="Sign Up"><br><br>
-        <a onclick="window.location.href='/login'" class="terms-link">Already a member? Make a request</a>
-        </div>
-        </div>
-        <br><a id="terms" class="terms-link" onclick="ShowHiddenText();">View Terms & Conditions</a><br>
-        <div id="HiddenTextContainer" style="text-align: center;width: 100%;display: none; user-select:text; padding: 30px;">
-            <sub style="font-size: xx-small;"><sup style="font-size: xx-small;">1</sup>Prices subject to change. Prices do not include costs for media requests (FullHD 1080p requests $1/each, 4K 2160p requests: $2/each, TV Seasons $2-$4/each). "free monthly requests" do not accumulate and quality is not guaranteed and cannot not be requested. Requests for TV Shows may be made by season or by episode. Quality is not guaranteed and cannot not be requested for requests by season. If a request is not fulfilled within 2 days of ordering you may be eligible for a full refund. A refund for a request relating to issues of video, audio, or service quality may be asked for within two days of fulfillment. Request refunds relating to video, audio, or service quality are not guaranteed and are handled on a case by case basis. Requests must be paid prior to fulfillment. By subscribing, the user (henceforth referred to as “Party A”) hereby assumes and accepts all responsibilities, liabilities, and indemnifications as defined under the precedents established in Sheboygan v. Fartholomew VII and other applicable rulings, statutes, ordinances, and codes, both local and international. Party A acknowledges that any claims, grievances, or dissatisfactions with the service, including but not limited to latency, content selection, streaming quality, narrative dissatisfaction, or death, are deemed waived, dismissed, and non-actionable in any judicial, quasi-judicial, or alternate dispute resolution forum. Further, Party A certifies that they are not an agent, affiliate, or informant of any coalition or entity acting in the interest of prohibitive digital content governance. All other unlisted terms and conditions (672) apply in perpetuity.</sub>
-            <br><br><sub style="font-size: xx-small;"><sup style="font-size: xx-small;">2</sup>For new subscribers only. No payment information required. Sign up does not gaurantee approval for trial or subscription. If approved, free trial begins on approval date from which the 30 days will begin. Service may be terminated at anytime on or after the 30<sup style="font-size: xx-small;">th</sup> day of free trial. A FartFlix+ subscription may be purchased at anytime during the free trial to avoid service termination. If a subscription is started within the free trial period, the free trial will immediately end and the purchase date will start a new billing period. Free trial members are not eligible for free requests.</sub>
         </div>
     </form>
 </body>
