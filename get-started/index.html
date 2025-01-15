@@ -35,13 +35,13 @@
 
                 if (newUser()) {
                     console.log(cost);
-                    // emailjs.sendForm('service_37nvk1e','intro',this)
-                    //     .then(() => {
-                    //         console.log('SUCCESS!');
-                    //         window.location.href='/get-started/success';
-                    //     }, (error) => {
-                    //         console.log('FAILED...',error);
-                    //     });
+                    emailjs.sendForm('service_37nvk1e','intro',this)
+                        .then(() => {
+                            console.log('SUCCESS!');
+                            window.location.href='/get-started/success';
+                        }, (error) => {
+                            console.log('FAILED...',error);
+                        });
                 } else {
                     alert('Email address already in use.');
                 }
