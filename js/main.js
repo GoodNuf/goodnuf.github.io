@@ -1,31 +1,3 @@
-function tSwitch()
-{
-    var sTable=document.getElementById("sTable");
-    var mTable=document.getElementById("mTable");
-    var map=document.getElementById("map");
-    var map2=document.getElementById("map2");
-    if (mTable.style.display==="table")
-    {
-        document.title="Shows";
-        mTable.style.display="none";
-        sTable.style.display="table";
-        map2.classList.remove("map");
-        map2.onclick=null;
-        map.classList.add("map");
-        map.onclick=tSwitch;
-    }
-    else
-    {
-        document.title="Movies";
-        sTable.style.display="none";
-        mTable.style.display="table";
-        map.classList.remove("map");
-        map.onclick=null;
-        map2.classList.add("map");
-        map2.onclick=tSwitch;
-        body.scrollHeight=document.body.scrollHeight+30;
-    }
-}
 function ShowHiddenText()
 {
     var hiddenTextContainer=document.getElementById("HiddenTextContainer");
@@ -351,4 +323,15 @@ function memberSwitch()
         window.scrollTo(0,0);
         b.classList.replace("box2S","box2");
     }
+}
+function tSwitch(showTable,hideTable,showBubble,hideBubble)
+{
+    var showT=document.getElementById(showTable);
+    var hideT=document.getElementById(hideTable);
+    var showB=document.getElementById(showBubble);
+    var hideB=document.getElementById(hideBubble);
+    hideT.style.display="none";
+    showT.style.display="table";
+    hideB.classList.replace("radioBubbleS","radioBubble");
+    showB.classList.replace("radioBubble","radioBubbleS");
 }
