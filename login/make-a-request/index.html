@@ -17,6 +17,12 @@
             {
                 event.preventDefault();
                 var year=document.forms["signupForm"]["year"].value;
+                let email="";
+                console.log("user obj: "+user.id+" "+user.email+" "+user.name);
+                email=user.email;
+                // console.log("user obj: "+this.user);
+                // console.log("obj email: "+email);
+                // console.log("obj id: "+user.id);
                 if (year<1895||year>2025)
                 {
                     alert("Please enter a valid year.");
@@ -36,6 +42,7 @@
                 },(error)=>
                 {
                     console.log('FAILED...', error);
+                    alert('Failed to send request. Please try again later.');
                 });
             });
         }
@@ -88,6 +95,7 @@
             <input type="text" name="title" required placeholder="Media Title"><br>
             <input type="number" name="year" required placeholder="Release Year (YYYY)">
             <input type="radio" id="txt" name="txt" style="display:none;">
+            <input type="hidden" id="email" name="email" value="">
         </div><br>
         <input type="submit" value="Submit"><br>
         </div>

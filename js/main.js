@@ -1,3 +1,26 @@
+class user {
+    constructor(obj) {
+        sessionStorage.setItem('id',obj.User.Id);
+        sessionStorage.setItem('email',obj.User.Name);
+        console.log('CONSTRUCTOR [id: "',this.id+'" email: "',this.email+'"]');
+    }
+    destroy() {
+        sessionStorage.clear();
+        console.log('User destroyed:',this);
+    }
+    get id() {
+        return sessionStorage.getItem('id');
+    }
+    set name(name) {
+        sessionStorage.setItem('name', name);
+    }
+    get name() {
+        return sessionStorage.getItem('name');
+    }
+    get email() {
+        return sessionStorage.getItem('email');
+    }
+}
 function ShowHiddenText()
 {
     var hiddenTextContainer=document.getElementById("HiddenTextContainer");
@@ -256,6 +279,8 @@ async function loginUser() {
 
     if (response.ok) {
         const data = await response.json();
+        new user(data);
+        console.log("LOGINUSER FUNCTION ["+user.id+" "+user.email+" "+user.name+']');
         console.log('Login successful:', data);
         alert('Successfully logged in as "'+data.User.Name+'"');
         window.location.href = '/login/make-a-request';
@@ -269,7 +294,7 @@ async function loginUser() {
 async function newUser() {
     const username=document.getElementById('email').value;
     const password=document.getElementById('pw').value;
-
+    const name = document.getElementById('fname').value;
     const response = await fetch('https://watch.fartflix.com/Users/New', {
         method: 'POST',
         headers: {
@@ -283,6 +308,9 @@ async function newUser() {
     });
     if (response.ok) {
         const data = await response.json();
+        new user(data);
+        console.log("NEWUSER FUNCTION ["+user.id+" "+user.email+" "+user.name+']');
+        user.Name=name;
         console.log('Account creation successful:', data);
         // alert('Account creation successful!');
         fetch(`https://watch.fartflix.com/Users/${encodeURIComponent(data.Id)}/Policy`, {
