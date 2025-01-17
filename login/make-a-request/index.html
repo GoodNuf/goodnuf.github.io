@@ -17,23 +17,33 @@
             {
                 event.preventDefault();
                 var year=document.forms["signupForm"]["year"].value;
+                var usr=user.load();
+                // console.log('MAKEAREQUEST ONLOAD [ID: ' + usr.id + ' EMAIL: ' + usr.email + ' NAME: ' + usr.name + ']');
+                if (usr) {
+                    console.log('MAKEAREQUEST ONLOAD [ID: [' + usr.id + '] EMAIL: [' + usr.email + '] NAME: [' + usr.name + ']]');
+                    document.getElementById('email').value = user.email; // Set the email field in the form
+                } else {
+                    console.error('No user found in session');
+                    alert('Failed to send request. Please try again later.');
+                    return;
+                }
                 let email="";
-                console.log("user obj: "+user.id+" "+user.email+" "+user.name);
-                email=user.email;
+                console.log("MAKEAREQUEST ONLOAD [ID: "+usr.id+" EMAIL:"+usr.email+" NAME:"+usr.name+"]");
+                email=usr.email;
                 // console.log("user obj: "+this.user);
-                // console.log("obj email: "+email);
+                console.log("usr email: ["+usr.email+"]");
+                console.log("form email: ["+email+"]");
                 // console.log("obj id: "+user.id);
                 if (year<1895||year>2025)
                 {
                     alert("Please enter a valid year.");
                     return false;
                 }
-                if(typeof document.forms["signupForm"]["type"].value=="Movie")
+                if(typeof document.forms["signupForm"]["type"].value==="Movie")
                     document.forms["signupForm"]["txt"].value="Quality: {{quality}}";
                 else
-                {
                     document.forms["signupForm"]["txt"].value="Method: {{method}}<br>Seasons: {{seasons}}";
-                }
+                console.log("TXT: ["+document.forms["signupForm"]["txt"].value+"]");
                 emailjs.sendForm('service_37nvk1e','request',this)
                 .then(()=>
                 {
@@ -94,7 +104,7 @@
             </div>
             <input type="text" name="title" required placeholder="Media Title"><br>
             <input type="number" name="year" required placeholder="Release Year (YYYY)">
-            <input type="radio" id="txt" name="txt" style="display:none;">
+            <input type="hidden" id="txt" name="txt" style="display:none;">
             <input type="hidden" id="email" name="email" value="">
         </div><br>
         <input type="submit" value="Submit"><br>

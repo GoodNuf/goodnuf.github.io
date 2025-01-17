@@ -1,8 +1,39 @@
 class user {
-    constructor(obj) {
+    constructor(obj,fname) {
+        if(fname)
+        {
+            sessionStorage.setItem('id',obj.Id);
+            sessionStorage.setItem('email',obj.Name);
+            sessionStorage.setItem('name',fname);
+            console.log('CONSTRUCTOR [id: "',this.id+'" email: "',this.email+'"]');
+            return;
+        }
+        else
+        {
+            sessionStorage.setItem('id',obj.User.Id);
+            sessionStorage.setItem('email',obj.User.Name);
+            console.log('CONSTRUCTOR [id: "',this.id+'" email: "',this.email+'"]');
+        }
+    }
+    nameLoad(obj,fname) {
         sessionStorage.setItem('id',obj.User.Id);
         sessionStorage.setItem('email',obj.User.Name);
+        sessionStorage.setItem('name',fname);
         console.log('CONSTRUCTOR [id: "',this.id+'" email: "',this.email+'"]');
+    }
+    static load()
+    {
+        var obj={};
+        obj.id=sessionStorage.getItem('id');
+        obj.email=sessionStorage.getItem('email');
+        if(sessionStorage.getItem('name'))
+            obj.name=sessionStorage.getItem('name');
+            // console.log('TRUE');
+        else
+            console.log('FALSE');
+            // this.name=sessionStorage.getItem('name');
+        console.log('LOAD [id: "',obj.id+'" email: "',obj.email+'"]');
+        return obj;
     }
     destroy() {
         sessionStorage.clear();
@@ -278,9 +309,9 @@ async function loginUser() {
     });
 
     if (response.ok) {
-        const data = await response.json();
-        new user(data);
-        console.log("LOGINUSER FUNCTION ["+user.id+" "+user.email+" "+user.name+']');
+        const data=await response.json();
+        const usr=new user(data);
+        console.log("LOGINUSER FUNCTION [ID: "+usr.id+" EMAIL: "+usr.email+" NAME: "+usr.name+']');
         console.log('Login successful:', data);
         alert('Successfully logged in as "'+data.User.Name+'"');
         window.location.href = '/login/make-a-request';
@@ -294,7 +325,7 @@ async function loginUser() {
 async function newUser() {
     const username=document.getElementById('email').value;
     const password=document.getElementById('pw').value;
-    const name = document.getElementById('fname').value;
+    const fname=document.getElementById('fname').value;
     const response = await fetch('https://watch.fartflix.com/Users/New', {
         method: 'POST',
         headers: {
@@ -308,11 +339,7 @@ async function newUser() {
     });
     if (response.ok) {
         const data = await response.json();
-        new user(data);
-        console.log("NEWUSER FUNCTION ["+user.id+" "+user.email+" "+user.name+']');
-        user.Name=name;
         console.log('Account creation successful:', data);
-        // alert('Account creation successful!');
         fetch(`https://watch.fartflix.com/Users/${encodeURIComponent(data.Id)}/Policy`, {
             method: 'POST',
             headers: {
@@ -328,10 +355,12 @@ async function newUser() {
                 PasswordResetProviderId: data.Policy.PasswordResetProviderId
             })
         });
+        const usr=new user(data,fname);
+        console.log("NEWUSER FUNCTION [ID: "+usr.id+" EMAIL: "+usr.email+" NAME: "+usr.name+']');
         return true;
     } else {
-        console.error('Account creation failed:', response.statusText);
-        alert('Account creation failed.');
+        console.error('Account modification failed:',response.statusText);
+        alert('Account modification failed.');
         return false;
     }
 }

@@ -37,7 +37,7 @@
                     console.log(cost);
                     emailjs.sendForm('service_37nvk1e','intro',this)
                         .then(() => {
-                            console.log('SUCCESS!');
+                            console.log('ALL SUCCESS!');
                             window.location.href='/get-started/success';
                         }, (error) => {
                             console.log('FAILED...',error);
@@ -73,7 +73,7 @@
                 </div>
                 <br style="display: block;margin: 8px 0;">
                 <input type="hidden" id="cost" name="cost" value="">
-                <input type="text" name="fname" required placeholder="First Name"><br>
+                <input type="text" name="fname" id="fname" required placeholder="First Name"><br>
                 <input type="email" name="email" id="email" required placeholder="Email Address"><br>
                 <input type="hidden" name="txt2" value="">
                 <div class="flex-container">
