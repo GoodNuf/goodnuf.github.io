@@ -21,7 +21,7 @@
                 // console.log('MAKEAREQUEST ONLOAD [ID: ' + usr.id + ' EMAIL: ' + usr.email + ' NAME: ' + usr.name + ']');
                 if (usr) {
                     console.log('MAKEAREQUEST ONLOAD [ID: [' + usr.id + '] EMAIL: [' + usr.email + '] NAME: [' + usr.name + ']]');
-                    document.getElementById('email').value = user.email; // Set the email field in the form
+                    document.getElementById('email').value = usr.email.trim(); // Set the email field in the form
                 } else {
                     console.error('No user found in session');
                     alert('Failed to send request. Please try again later.');
@@ -48,7 +48,7 @@
                 .then(()=>
                 {
                     console.log('SUCCESS!');
-                    window.location.href='/make-a-request/success';
+                    window.location.href='/login/make-a-request/success';
                 },(error)=>
                 {
                     console.log('FAILED...', error);
