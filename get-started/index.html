@@ -14,6 +14,9 @@
         window.onload = function() {
             document.getElementById('signupForm').addEventListener('submit', function(event) {
                 event.preventDefault();
+                form=document.getElementById('signupForm');
+                form.style.display='none';
+                document.getElementById('loading').style.display='flex';
                 if (document.forms["signupForm"]["pw"].value !== document.forms["signupForm"]["pw2"].value) {
                     alert('Passwords do not match.');
                     return;
@@ -52,6 +55,9 @@
 <body style="background-color:black;color:white">
     <div class="title-container">
         <h1 class="title" onclick="window.location.href='/index.html'">FartFlix<span>+</span><i style="font-size: small;">An Upcyclr Project</i></h1>
+    </div>
+    <div class="content-containerS" id="loading" style="display:none">
+        <div class="loader"></div>
     </div>
     <form id="signupForm" name="signupForm" method="post" class="centered">
         <div class="formBubble" style="background-color: #292929;">

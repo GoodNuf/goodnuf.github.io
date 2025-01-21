@@ -3,7 +3,7 @@ class user {
         if(fname)
         {
             sessionStorage.setItem('id',obj.Id);
-            sessionStorage.setItem('email',obj.Name);
+            sessionStorage.setItem('email',obj.Name.trim());
             sessionStorage.setItem('name',fname);
             console.log('CONSTRUCTOR [id: "',this.id+'" email: "',this.email+'"]');
             return;
@@ -11,8 +11,11 @@ class user {
         else
         {
             sessionStorage.setItem('id',obj.User.Id);
-            sessionStorage.setItem('email',obj.User.Name);
-            console.log('CONSTRUCTOR [id: "',this.id+'" email: "',this.email+'"]');
+            sessionStorage.setItem('email',obj.User.Name.trim());
+            sessionStorage.setItem('name',obj.User.Policy.BlockedChannels[0]);
+            console.log("obj.User.Policy.BlockedChannels ["+obj.User.Policy.BlockedChannels+"]");
+            console.log("obj.User.Policy.BlockedChannels[0] ["+obj.User.Policy.BlockedChannels[0]+"]");
+            console.log('LOAD CONSTRUCTOR [id: "',this.id+'" email: "',this.email+'"]'+' name: ['+obj.User.Policy.BlockedChannels[0]+']');
         }
     }
     nameLoad(obj,fname) {
@@ -351,6 +354,8 @@ async function newUser() {
                 EnableContentDownloading: false,
                 EnableLiveTvAccess: false,
                 EnableLiveTvManagement: false,
+                MaxActiveSessions:1,
+                // BlockedChannels: [fname],
                 AuthenticationProviderId: data.Policy.AuthenticationProviderId,
                 PasswordResetProviderId: data.Policy.PasswordResetProviderId
             })
