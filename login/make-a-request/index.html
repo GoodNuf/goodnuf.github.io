@@ -17,8 +17,9 @@
             {
                 event.preventDefault();
                 form=document.getElementById('signupForm');
+                loading=document.getElementById('loading');
                 form.style.display='none';
-                document.getElementById('loading').style.display='flex';
+                loading.style.display='flex';
                 var year=document.forms["signupForm"]["year"].value;
                 var usr=user.load();
                 // console.log('MAKEAREQUEST ONLOAD [ID: ' + usr.id + ' EMAIL: ' + usr.email + ' NAME: ' + usr.name + ']');
@@ -55,7 +56,10 @@
                 },(error)=>
                 {
                     console.log('FAILED...', error);
-                    alert('Failed to send request. Please try again later.');
+                    alert('There was a problem sending your request. Please try again or contact support@fartflix.com.');
+                    window.location.href='/login/make-a-request';
+                    // form.style.display='block';
+                    // loading.style.display='none';
                 });
             });
         }

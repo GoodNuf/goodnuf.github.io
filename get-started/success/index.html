@@ -17,6 +17,17 @@
         <h4>Thank you for signing up to FartFlix+!</h4><h4></h4>
         <h4>Your form has been submitted</h4><h4></h4>
         <h4>Check your email for further instructions</h4>
+        <div class="flex-container" style="margin-top: 20px;">
+            <div class="radioBubble" id="mBubble1" onclick="window.open('https://watch.fartflix.com', '_blank'); event.stopPropagation();" style="cursor: pointer;">
+                <label for="monthly1">&#9658; Start streaming</label>
+            </div>
+            <div class="radioBubble" id="mBubble2" onclick="window.location.href='/login'" style="cursor: pointer;">
+                <label for="monthly1">Make a request</label>
+            </div>
+            <div class="radioBubble" id="mBubble3" onclick="window.location.href='/login/?switch=true'" style="cursor: pointer;">
+                <label for="monthly1">Manage account</label>
+            </div>
+        </div>
     </div>
 </body>
 </html>

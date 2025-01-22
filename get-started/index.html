@@ -43,6 +43,8 @@
                             console.log('ALL SUCCESS!');
                             window.location.href='/get-started/success';
                         }, (error) => {
+                            alert('There was a problem creating your account. Please try again or contact support@fartflix.com.');
+                            window.location.href='/get-started';
                             console.log('FAILED...',error);
                         });
                 } else {
