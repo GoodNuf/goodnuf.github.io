@@ -13,16 +13,30 @@
     <div class="title-container">
         <h1 class="title">FartFlix<span>+</span><i style="font-size: small;">An Upcyclr Project</i></h1>
     </div>
+    <div id="statusPop" class="formBubble" style="background-color:#474747; position: absolute; left:50%; transform:translateX(-50%); top: 30%; z-index: 9999; width:30%;height:30%">
+        <span style="display: flex; justify-content: space-between; align-items: center;">
+            <h4 style="margin-top: 0; text-align: center; flex-grow: 1;">Server Status</h4>
+            <h4 class="xBubble" style="width:fit-content;border-radius: 100%;">x</h4>
+        </span>
+        <br>
+        <!-- <div class="radioBubble" id="mBubble1" onclick="" style="cursor: pointer;width:fit-content; padding:10px; border-radius: 100%;">
+            <label for="monthly1">x</label>
+        </div> -->
+        <!-- <h4 style="background-color: #00ffff; border-radius: 100%; width:fit-content; padding: 10px;;">x</h4> -->
+        <div class="formBubble" style="background-color:#09ff0036;height:70%">
+            <h1 id="status" style="color:#09ff00a9; top:50%; transform:translateY(50%);">Online</h1>
+        </div>
+    </div>
     <div class="content-container">
         <div class="centered">
             <div class="formBubble" style="background-color: #292929;">
                 <div class="formBubble">
                     <h4 style="margin: 0;">Plans</h4><br>
                     <div class="box" style="background-color:#292929;">
-                        <br><p><h4>FartFlix<span style="color:#69CCC9;">+</span> Monthly</h4>(Access to 400+ Movies & 1,500+ episodes of TV + 1 free monthly request): $<span style="color:#69CCC9;">6</span>/month<sup>1</sup></p><br>
+                        <br><p><h4>FartFlix<span style="color:#69CCC9;">+</span> Monthly</h4>(Access to 500+ Movies & 4,000+ episodes of TV + 1 free monthly request): $<span style="color:#69CCC9;">6</span>/month<sup>1</sup></p><br>
                     </div><br>
                     <div class="box"style="background-color: #292929;">
-                        <br><p><h4>FartFlix<span style="color:#69CCC9;">+</span> Annual</h4>(Access to 400+ Movies & 1,500+ episodes of TV + 1 free monthly request): $<span style="color:#69CCC9;">55</span>/year<sup>1</sup></p><br>
+                        <br><p><h4>FartFlix<span style="color:#69CCC9;">+</span> Annual</h4>(Access to 500+ Movies & 4,000+ episodes of TV + 1 free monthly request): $<span style="color:#69CCC9;">55</span>/year<sup>1</sup></p><br>
                     </div>
                 </div>
                 <br>
@@ -43,7 +57,7 @@
                     <div class="box2" onclick="window.location.href='/get-started'" style="margin: 0 auto;">
                         <br><p><h2 class="text-section-header">Get Started</h2>Sign up and start your 30 day free trial<sup>2</sup></p><br>
                     </div><br><br>
-                    <div id="memberBox" class="box2" onclick="memberSwitch();" style="margin: 0 auto;">
+                    <div id="memberBox" class="box2" onclick="memberSwitch('member','memberBox','manage');" style="margin: 0 auto;">
                         <br><p><h2 class="text-section-header">Already a FartFlix+ Member?</h2>Start streaming or login</p><br>
                     </div>
                     <div id="member" style="display: none;">
@@ -55,7 +69,10 @@
                             <div class="radioBubble" id="mBubble2" onclick="window.location.href='/login'" style="cursor: pointer;">
                                 <label for="monthly1">Make a request</label>
                             </div>
-                            <div class="radioBubble" id="mBubble3" onclick="window.location.href='/login/?switch=true'" style="cursor: pointer;">
+                            <div class="radioBubble" id="mBubble3" onclick="window.location.href='/status'"  style="cursor: pointer;">
+                                <label for="monthly1">Server status</label>
+                            </div>
+                            <div class="radioBubble" id="mBubble3" onclick="window.location.href='/login/?switch=true'"  style="cursor: pointer;">
                                 <label for="monthly1">Manage account</label>
                             </div>
                         </div>
