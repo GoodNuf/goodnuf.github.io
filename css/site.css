@@ -33,9 +33,14 @@ input[type='checkbox']:active {background-color: #69ccc9d2;}
 /* input[type='radio']:hover {accent-color: #ffffffb7;} */
 label:hover {cursor:pointer;}
 .HiddenTextContainer:hover {cursor: pointer;}
-.terms-link {transition:color 0.2s;cursor: pointer;color: #69CCC9;text-decoration: underline;margin: 0 auto; padding:30px;}
+.terms-link {transition:color 0.2s;cursor: pointer;color: #4C4C4C;text-decoration: underline;margin: 0 auto; padding:30px;}
 .terms-link:hover {color: #ffffff;}
-.terms-link:active {color: #69ccc98f;}
+.terms-link:active {color: #292929;}
+
+.terms-linkS {transition:color 0.2s;cursor: pointer;color: #ffffff;text-decoration: underline;margin: 0 auto; padding:30px;}
+.terms-linkS:hover {color: #4C4C4C;}
+.terms-linkS:active {color: #292929;}
+
 #HiddenTextContainer {cursor: text;text-align: center;width: 100%;display: none; user-select:text; padding: 30px;}
 /* .formBubble{background-color: #ffffff2a; border-radius: 30px; padding: 20px;} */
 .formBubble {background-color: #ffffff2a;padding: 20px;margin: 0 auto;max-width: 1500px;border-radius: 30px;}
@@ -61,6 +66,10 @@ label:hover {cursor:pointer;}
 .map span{color: #69CCC9;}
 .map:hover span{color: #ffffff;}
 .map:active span{color: #69CCC9;}
+
+.xBubble{transition: background-color 0.2s;}
+.xBubble:hover{background-color:#898989;}
+.xBubble:active{background-color:#212121;transform: scale(0.99);}
 
 /* table.gridtable {margin: 0 auto;border-collapse: collapse;width: 80%;border-collapse:separate;
     border:solid #292929 15px;

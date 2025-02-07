@@ -63,6 +63,7 @@ function ShowHiddenText()
         hiddenTextContainer.style.display="block";
         window.scrollTo(0, document.body.scrollHeight*69);
         terms.innerText="Hide Terms & Conditions";
+        terms.classList.replace("terms-link","terms-linkS");
         body.style.overflow="visible";
     }
     else
@@ -70,6 +71,7 @@ function ShowHiddenText()
         hiddenTextContainer.style.display="none";
         window.scrollTo(0,0)
         terms.innerText="View Terms & Conditions";
+        terms.classList.replace("terms-linkS","terms-link");
         body.style.overflow="hidden";
     }
 }
@@ -227,13 +229,13 @@ function byS()
 
     var st=document.getElementById("stContainer");
     var txt=document.getElementById("stText");
-    if(st.style.display==="block"&&txt.placeholder==='Season(s) ($2-$4 each) (e.g. "3", "1-4", "1,3,5")')
+    if(st.style.display==="block"&&txt.placeholder==='Season(s) (e.g. "3", "1-4", "1,3,5")')
     {
         // st.style.display="none";
         rSwitch("bySeason","byEpisode","bySeasonBubble","byEpisodeBubble");
         return;
     }
-    txt.placeholder='Season(s) ($2-$4 each) (e.g. "3", "1-4", "1,3,5")';
+    txt.placeholder='Season(s) (e.g. "3", "1-4", "1,3,5")';
     st.style.display="block";
     rSwitch("bySeason","byEpisode","bySeasonBubble","byEpisodeBubble");
 }
@@ -241,13 +243,13 @@ function byE()
 {
     var st=document.getElementById("stContainer");
     var txt=document.getElementById("stText");
-    if(st.style.display==="block"&&txt.placeholder==='Episode(s) ($1-$2 each) (e.g. "S01E03", "Season 1 Episode 3", "1x3")')
+    if(st.style.display==="block"&&txt.placeholder==='Episode(s) (e.g. "S01E03", "Season 1 Episode 3", "1x3")')
     {
         // st.style.display="none";
         rSwitch("byEpisode","bySeason","byEpisodeBubble","bySeasonBubble");
         return;
     }
-    txt.placeholder='Episode(s) ($1-$2 each) (e.g. "S01E03", "Season 1 Episode 3", "1x3")';
+    txt.placeholder='Episode(s) (e.g. "S01E03", "Season 1 Episode 3", "1x3")';
     st.style.display="block";
     rSwitch("byEpisode","bySeason","byEpisodeBubble","bySeasonBubble");
 }
