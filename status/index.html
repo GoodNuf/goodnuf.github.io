@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FartFlix+</title>
+    <link rel="stylesheet" href="https://unpkg.com/marx-css/css/marx.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/site.css">
+    <script src="/js/main.js"></script>
+    <script>
+        window.onload=function()
+        {
+            const response = fetch('https://watch.fartflix.com/System/Ping');
+            if (response==200)
+                document.getElementById('online').style.display='block';
+            else
+                document.getElementById('offline').style.display='block';
+        };
+    </script>
+</head>
+<body style="background-color:black;color:white">
+    <div class="title-container">
+        <h1 class="title" onclick="window.location.href='/index.html'">FartFlix<span>+</span><i style="font-size: small;">An Upcyclr Project</i></h1>
+    </div>
+    <div id="statusPop" class="formBubble" style="background-color:#474747; position: absolute; left:50%; transform:translateX(-50%); top: 30%; z-index: 9999; width:30%;height:30%">
+        <span style="display: flex; justify-content: space-between; align-items: center;">
+            <h4 style="margin-top: 0; text-align: center; flex-grow: 1;">Server Status</h4>
+        </span>
+        <br>
+        <div id="online" class="formBubble" style="display:none;background-color:#09ff0036;height:70%">
+            <h1 id="status" style="color:#09ff00a9; top:50%; transform:translateY(50%);">Online</h1>
+        </div>
+        <div id="offline" class="formBubble" style="display:none;background-color:#ff000036;height:70%">
+            <h1 id="status" style="color:#ff000097; top:50%; transform:translateY(50%);">Offline</h1>
+        </div>
+    </div>
+</body>
+</html>
