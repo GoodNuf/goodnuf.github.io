@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="/css/site.css">
     <script src="/js/main.js"></script>
     <script>
-        window.onload=function()
+        window.onload=async function()
         {
-            const response = fetch('https://watch.fartflix.com/System/Ping');
-            if (response==200)
+            const response = await fetch('https://watch.fartflix.com/System/Ping');
+            if(response.status==200)
                 document.getElementById('online').style.display='block';
             else
                 document.getElementById('offline').style.display='block';
