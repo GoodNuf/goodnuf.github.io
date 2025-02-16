@@ -11,6 +11,7 @@
     <script>
         window.onload=async function()
         {
+            load=document.getElementById('loading');
             try
             {
                 const response = await fetch('https://watch.fartflix.com/System/Ping');
@@ -18,9 +19,11 @@
                     document.getElementById('online').style.display='block';
                 else
                     document.getElementById('offline').style.display='block';
+                load.style.display='none';
             }
             catch
             {
+                load.style.display='none';
                 document.getElementById('offline').style.display='block';
             }
         };
@@ -35,6 +38,7 @@
             <h4 style="margin-top: 0; text-align: center; flex-grow: 1;">Server Status</h4>
         </span>
         <br>
+        <div id="loading" class="loader" style="margin-top: 10%;"></div>
         <div id="online" class="formBubble" style="display:none;background-color:#09ff0036;height:70%">
             <h1 id="status" style="color:#09ff00a9; top:50%; transform:translateY(50%);">Online</h1>
         </div>
