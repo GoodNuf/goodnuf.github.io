@@ -15,7 +15,7 @@
             try
             {
                 const response = await fetch('https://watch.fartflix.com/System/Ping');
-                if(response.status==200&&!response.ok)
+                if(response.status==200&&response.ok)
                     document.getElementById('online').style.display='block';
                 else
                     document.getElementById('offline').style.display='block';
